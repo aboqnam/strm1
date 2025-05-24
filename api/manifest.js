@@ -14,11 +14,11 @@ const manifest = {
 const builder = new addonBuilder(manifest);
 
 builder.defineSubtitlesHandler(({ id }) => {
+    console.log("طلب ترجمات لـ:", id); // للتتبع
     return Promise.resolve({ subtitles: [] });
 });
 
-const { getInterface } = builder;
-const handler = getInterface();
+module.exports = builder.getInterface();
 
 module.exports = (req, res) => {
     handler(req, res);
